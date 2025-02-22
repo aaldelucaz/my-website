@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Top-Up Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+            padding: 20px;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            max-width: 400px;
+            margin: auto;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            color: #333;
+        }
+        label {
+            font-size: 16px;
+            display: block;
+            margin-top: 10px;
+            text-align: left;
+        }
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        button {
+            background-color: #28a745;
+            color: white;
+            padding: 10px;
+            width: 100%;
+            margin-top: 15px;
+            border: none;
+            cursor: pointer;
+            font-size: 18px;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Top-Up Game</h2>
+        <form id="topupForm">
+            <label for="username">Username Game:</label>
+            <input type="text" id="username" placeholder="Masukkan username" required>
+
+            <label for="game">Pilih Game:</label>
+            <select id="game">
+                <option value="ml">Mobile Legends</option>
+                <option value="ff">Free Fire</option>
+                <option value="pubg">PUBG Mobile</option>
+            </select>
+
+            <label for="nominal">Pilih Nominal:</label>
+            <select id="nominal">
+                <option value="10">10 Diamonds - Rp 5.000</option>
+                <option value="50">50 Diamonds - Rp 25.000</option>
+                <option value="100">100 Diamonds - Rp 50.000</option>
+            </select>
+
+            <label for="payment">Metode Pembayaran:</label>
+            <select id="payment">
+                <option value="gopay">GoPay</option>
+                <option value="dana">Dana</option>
+                <option value="ovo">OVO</option>
+                <option value="bank">Transfer Bank</option>
+            </select>
+
+            <button type="submit">Beli Sekarang</button>
+        </form>
+
+        <p id="result"></p>
+    </div>
+
+    <script>
+        document.getElementById("topupForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            let username = document.getElementById("username").value;
+            let game = document.getElementById("game").value;
+            let nominal = document.getElementById("nominal").value;
+            let payment = document.getElementById("payment").value;
+
+            let gameText = document.getElementById("game").options[document.getElementById("game").selectedIndex].text;
+            let nominalText = document.getElementById("nominal").options[document.getElementById("nominal").selectedIndex].text;
+            let paymentText = document.getElementById("payment").options[document.getElementById("payment").selectedIndex].text;
+
+            document.getElementById("result").innerHTML = `
+                <strong>Detail Pembelian:</strong><br>
+                Username: ${username} <br>
+                Game: ${gameText} <br>
+                Nominal: ${nominalText} <br>
+                Pembayaran: ${paymentText} <br>
+                <br><strong>Silakan lakukan pembayaran melalui ${paymentText}.</strong>
+            `;
+        });
+    </script>
+
+</body>
+</html>
